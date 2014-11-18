@@ -24,6 +24,7 @@
     <span id="Pond_sniperName">{msg meaning="Pond.sniperName" desc="Name for a player that hides in a corner and shoots."}Sniper{/msg}</span>
     <span id="Pond_pendulumName">{msg meaning="Pond.pendulumName" desc="Name for a player that moves back and forth."}Pendulum{/msg}</span>
     <span id="Pond_scaredName">{msg meaning="Pond.scaredName" desc="Name for a player that is scared."}Scared{/msg}</span>
+	<span id="Pond_opponentName">{msg meaning="Pond.opponentName" desc="Generic name for the opponent."}Opponent{/msg}</span>
 
     <span id="Pond_scanTooltip">{msg meaning="Pond.scanTooltip" desc="Tooltip for the block that allows players to scan for enemies."}Scan for enemies.  Specify a direction (0-360).  Returns the distance to the closest enemy in that direction.  Returns Infinity if no enemy found.{/msg}</span>
     <span id="Pond_cannonTooltip">{msg meaning="Pond.cannonTooltip" desc="Tooltip for the block that allows players to shoot at other players."}Fire the cannon.  Specify a direction (0-360) and a range (0-70).{/msg}</span>
@@ -529,6 +530,16 @@ while (true) {
     drive(0, 0);
   }
 }
+</div>
+{/literal}
+{/template}
+
+/**
+ * Opponent.
+ */
+{template .playerOpponent}
+{literal}
+<div id="playerOpponent" style="display: none">
 </div>
 {/literal}
 {/template}

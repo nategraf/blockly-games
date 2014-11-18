@@ -25,7 +25,7 @@
 
 (function() {
   // Application path.
-  var appName = location.pathname.match(/\/([-\w]+)(\.html)?$/);
+  var appName = location.pathname.match(/\/([-\w]+)(\.html|\.php)?$/);
   appName = appName ? appName[1].replace('-', '/') : 'index';
 
   // Supported languages (consistent across all apps).
@@ -60,7 +60,7 @@
 
   // Load the chosen language pack.
   var script = document.createElement('script');
-  script.src = appName + '/generated/' + lang + '/compressed.js';
+  script.src = appName + '/generated/' + lang + '/uncompressed.js';
   script.type = 'text/javascript';
   document.head.appendChild(script);
 })();

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="text">//I'm here bitch!</div>
+  <script>
+  var client = new XMLHttpRequest();
+  client.open('POST', 'codedistro.php',true);
+  client.onreadystatechange = function() {
+	if(client.readyState == 4){
+		alert(client.responseText);
+	}
+  }
+  client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  client.send('code='+encodeURIComponent(document.getElementById('text').innerHTML)); 
+  </script>
+</body>
+</html>

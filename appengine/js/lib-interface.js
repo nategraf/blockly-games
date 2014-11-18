@@ -24,7 +24,6 @@
 'use strict';
 
 goog.provide('BlocklyInterface');
-
 goog.require('BlocklyGames');
 goog.require('BlocklyGames.Msg');
 goog.require('Blockly');

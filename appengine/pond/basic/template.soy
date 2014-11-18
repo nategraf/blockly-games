@@ -67,6 +67,7 @@
   {call Pond.soy.playerSniper /}
   {call Pond.soy.playerPendulum /}
   {call Pond.soy.playerScared /}
+  {call Pond.soy.playerOpponent /}
 
   {call BlocklyGames.soy.dialog /}
   {call BlocklyGames.soy.doneDialog /}
@@ -151,6 +152,11 @@
              desc="Instructions.  Do not translate the word 'Sniper'."}
           Sniper hides in a corner looking for targets.  Good luck.  Seriously.
         {/msg}
+	  {elseif $ij.level == 11}
+	    {msg meaning="Pond.helpText11"
+		     desc="Inscructions. Do not translate the word 'Opponent'."}
+		  Time to face ducks made by your peers! This is a one on one test of skills.
+		{/msg}
       {/if}
     </div>
     {call BlocklyGames.soy.ok /}

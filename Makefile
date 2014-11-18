@@ -21,43 +21,43 @@ all: deps languages zip
 index-en:
 	mkdir -p appengine/generated/en/
 	$(SOY_COMPILER) --outputPathFormat appengine/index/generated/en/soy.js --srcs appengine/index/template.soy
-	python build-app.py index en
+	python2.7 build-app.py index en
 
 puzzle-en: common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/puzzle/generated/en/soy.js --srcs appengine/puzzle/template.soy
-	python build-app.py puzzle en
+	python2.7 build-app.py puzzle en
 
 maze-en: common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/maze/generated/en/soy.js --srcs appengine/maze/template.soy
-	python build-app.py maze en
+	python2.7 build-app.py maze en
 
 bird-en: common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/bird/generated/en/soy.js --srcs appengine/bird/template.soy
-	python build-app.py bird en
+	python2.7 build-app.py bird en
 
 turtle-en: common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/turtle/generated/en/soy.js --srcs appengine/turtle/template.soy
-	python build-app.py turtle en
+	python2.7 build-app.py turtle en
 
 movie-en: common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/movie/generated/en/soy.js --srcs appengine/movie/template.soy
-	python build-app.py movie en
+	python2.7 build-app.py movie en
 
 pond-docs-en:
 	$(SOY_COMPILER) --outputPathFormat appengine/pond/docs/generated/en/soy.js --srcs appengine/pond/docs/template.soy
-	python build-app.py pond/docs en
+	python2.7 build-app.py pond/docs en
 
 pond-basic-en: pond-common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/pond/basic/generated/en/soy.js --srcs appengine/pond/basic/template.soy
-	python build-app.py pond/basic en
+	python2.7 build-app.py pond/basic en
 
 pond-advanced-en: pond-common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/pond/advanced/generated/en/soy.js --srcs appengine/pond/advanced/template.soy
-	python build-app.py pond/advanced en
+	python2.7 build-app.py pond/advanced en
 
 pattern-en: common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/pattern/generated/en/soy.js --srcs appengine/pattern/template.soy
-	python build-app.py pattern en
+	python2.7 build-app.py pattern en
 
 pond-common-en: common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/pond/generated/en/soy.js --srcs appengine/pond/template.soy
@@ -77,7 +77,7 @@ languages:
 	  echo; \
 	  echo --- $$app; \
 	  for lang in `ls appengine/$$app/generated`; do \
-	    python build-app.py $$app $$lang; \
+	    python2.7 build-app.py $$app $$lang; \
 	  done \
 	done
 

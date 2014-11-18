@@ -157,7 +157,7 @@ Pond.Tutorial.PLAYERS = [
   // Level 8.
   [
     {
-      start: new goog.math.Coordinate(20, 80),
+      start: new goog.math.Coordinate(50, 80),
       damage: 0,
       name: 'Pond_playerName',
       code: null
@@ -216,6 +216,21 @@ Pond.Tutorial.PLAYERS = [
       name: 'Pond_sniperName',
       code: 'playerSniper'
     }
+  ],
+  //Custom Level 11
+  [
+   {
+     start: new goog.math.Coordinate(20, 80),
+     damage: 0,
+     name: 'Pond_playerName',
+     code: null
+   },
+   {
+    start: new goog.math.Coordinate(80, 20),
+    damage: 0,
+    name: 'Pond_opponentName',
+    code: 'playerOpponent'
+   }
   ]
 ][BlocklyGames.LEVEL];
 
@@ -243,8 +258,8 @@ Pond.endBattle = function(survivors) {
             BlocklyDialogs.stopDialogKeyDown);
         BlocklyDialogs.startDialogKeyDown();
       } else {
-        BlocklyInterface.saveToLocalStorage();
         BlocklyDialogs.congratulations();
+		BlocklyInterface.saveToLocalStorage();
       }
     }
   } else {

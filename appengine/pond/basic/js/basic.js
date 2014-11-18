@@ -41,6 +41,7 @@ BlocklyGames.NAME = 'pond-basic';
 /**
  * Initialize Blockly and the pond.  Called on page load.
  */
+ 
 Pond.Basic.init = function() {
   // Render the Soy template.
   document.body.innerHTML = Pond.Basic.soy.start({}, null,
@@ -106,14 +107,21 @@ Pond.Basic.init = function() {
       '</xml>';
   }
   BlocklyInterface.loadBlocks(defaultXml, BlocklyGames.LEVEL != 4);
-
   for (var playerData, i = 0; playerData = Pond.Tutorial.PLAYERS[i]; i++) {
-    if (playerData.code) {
+    if (playerData.code && playerData.code != 'playerOpponent') {
       var div = document.getElementById(playerData.code);
       var code = div.textContent;
-    } else {
+    } else if(!playerData.code) {
       var code = function() {return Blockly.JavaScript.workspaceToCode()};
     }
+	else {
+	  // Send a query for opponnent code
+	  var code = ""; 
+	  var client = new XMLHttpRequest();
+      client.open('GET', 'pond/brains/codedistro.php', false);
+      client.send();
+      code = client.responseText;	  
+	}
     var name = BlocklyGames.getMsg(playerData.name);
     Pond.Battle.addPlayer(name, code, playerData.start, playerData.damage);
   }
@@ -121,3 +129,4 @@ Pond.Basic.init = function() {
 };
 
 window.addEventListener('load', Pond.Basic.init);
+window.addEventListener('beforeunload', BlocklyInterface.saveToLocalStorage);
