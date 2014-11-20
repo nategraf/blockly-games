@@ -42,8 +42,9 @@ BlocklyInterface.nextLevel = function() {
         window.location.host + window.location.pathname +
         '?lang=' + BlocklyGames.LANG + '&level=' + (BlocklyGames.LEVEL + 1);
   } else {
-    BlocklyInterface.indexPage();
-  }
+    window.location = window.location.protocol + '//' +
+        window.location.host + window.location.pathname +
+        '?lang=' + BlocklyGames.LANG + '&level=' + (BlocklyGames.LEVEL);  }
 };
 
 Pond.Tutorial.PLAYERS = [

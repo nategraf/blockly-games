@@ -44,15 +44,13 @@ BlocklyInterface.init = function() {
   // Disable the link button if page isn't backed by App Engine storage.
   var linkButton = document.getElementById('linkButton');
   if ('BlocklyStorage' in window) {
-    BlocklyStorage['HTTPREQUEST_ERROR'] =
-        BlocklyGames.getMsg('Games_httpRequestError');
-    BlocklyStorage['LINK_ALERT'] = BlocklyGames.getMsg('Games_linkAlert');
-    BlocklyStorage['HASH_ERROR'] = BlocklyGames.getMsg('Games_hashError');
-    BlocklyStorage['XML_ERROR'] = BlocklyGames.getMsg('Games_xmlError');
-    // Swap out the BlocklyStorage's alert() for a nicer dialog.
-    BlocklyStorage['alert'] = BlocklyGames.storageAlert;
+	// Modified by Nate Graf to be a save button. Saves to local storage
     if (linkButton) {
-      BlocklyGames.bindClick(linkButton, BlocklyStorage['link']);
+      BlocklyGames.bindClick(linkButton, BlocklyInterface.saveToLocalStorage);
+	  if (BlocklyGames.LEVEL == 11){
+	    // If it is level 11, also send the code to serever storage
+	    BlocklyGames.bindClick(linkButton, BlocklyInterface.saveToSparkServer);
+	  }
     }
   } else if (linkButton) {
     linkButton.style.display = 'none';
@@ -153,6 +151,23 @@ BlocklyInterface.saveToLocalStorage = function() {
     var text = Blockly.Xml.domToText(xml);
   }
   window.localStorage[name] = text;
+};
+
+/**
+ * (NateGraf) Send the code in the editor to codedistro.php using AJAX POST
+ */
+BlocklyInterface.saveToSparkServer = function() {
+  var client = new XMLHttpRequest();
+  client.open('POST', 'pond/brains/codedistro.php',true);
+  /*client.onreadystatechange = function() {
+	if(client.readyState == 4){
+		alert(client.responseText);
+	}
+  }*/
+  client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  var msg = "code="+encodeURIComponent(Blockly.JavaScript.workspaceToCode());
+  client.send(msg);
+  //alert("The save function ran");
 };
 
 /**

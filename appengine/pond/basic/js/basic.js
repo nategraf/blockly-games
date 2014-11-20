@@ -114,19 +114,21 @@ Pond.Basic.init = function() {
     } else if(!playerData.code) {
       var code = function() {return Blockly.JavaScript.workspaceToCode()};
     }
-	else {
+    else {
 	  // Send a query for opponnent code
 	  var code = ""; 
 	  var client = new XMLHttpRequest();
       client.open('GET', 'pond/brains/codedistro.php', false);
       client.send();
       code = client.responseText;	  
-	}
+    }
     var name = BlocklyGames.getMsg(playerData.name);
     Pond.Battle.addPlayer(name, code, playerData.start, playerData.damage);
   }
   Pond.reset();
 };
 
+
 window.addEventListener('load', Pond.Basic.init);
-window.addEventListener('beforeunload', BlocklyInterface.saveToLocalStorage);
+//window.addEventListener('beforeunload', BlocklyInterface.saveToLocalStorage);
+//window.addEventListener('beforeunload', BlocklyInterface.saveToSparkServer);
